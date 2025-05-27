@@ -179,7 +179,10 @@ to work.
 anyone.
 * For example, if the price of the collateral plummeted before anyone could be liquidated.
 */
-    function liquidate(address collateral, address user, uint256 debtToCover) external moreThanZero(debtToCover) nonReentrant {
+
+
+function liquidate(address collateral, address user, uint256 debtToCover) external moreThanZero(debtToCover) nonReentrant
+ {
     uint256 startingUserHealthFactor = _healthFactor(user);
     if(startingUserHealthFactor > MIN_HEALTH_FACTOR){
         revert DSCEngine__HealthFactorOk();
@@ -208,7 +211,7 @@ function _revertIfHealthFactorIsBroken(address user) internal view{
         revert DSCEngine__BreaksHealthFactor(userHealthFactor);
     }
 }
-}
+
 /*
  * Returns how close to liquidation a user is
  * If a user goes below 1, then they can be liquidated.
