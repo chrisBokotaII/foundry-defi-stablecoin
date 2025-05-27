@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MIT 
+// SPDX-License-Identifier: MIT
 // SPDX-license-identifier: MIT
 pragma solidity ^0.8.0;
 
@@ -12,19 +12,20 @@ contract DeployDefiStableCoin is Script {
     DSCEngine public dscEngine;
     HelperConfig public helperConfig;
     address[] public tokenAddresses;
-address[] public priceFeedAddresses;
+    address[] public priceFeedAddresses;
+
     function run() external returns (DiFiStableCoin, DSCEngine, HelperConfig) {
         helperConfig = new HelperConfig();
         (address wethUsdPriceFeed, address wbtcUsdPriceFeed, address weth, address wbtc, uint256 deployerKey) =
             helperConfig.activeNetworkConfig();
-       tokenAddresses = [weth, wbtc];
-    priceFeedAddresses = [wethUsdPriceFeed, wbtcUsdPriceFeed];
+        tokenAddresses = [weth, wbtc];
+        priceFeedAddresses = [wethUsdPriceFeed, wbtcUsdPriceFeed];
 
-    vm.startBroadcast();
-    dsc = new DiFiStableCoin();
-    DSCEngine engine = new DSCEngine(tokenAddresses, priceFeedAddresses, address(dsc));
-     dsc.transferOwnership(address(engine));
-    vm.stopBroadcast();
-    return (dsc, engine,helperConfig);
+        vm.startBroadcast();
+        dsc = new DiFiStableCoin();
+        DSCEngine engine = new DSCEngine(tokenAddresses, priceFeedAddresses, address(dsc));
+        dsc.transferOwnership(address(engine));
+        vm.stopBroadcast();
+        return (dsc, engine, helperConfig);
     }
 }
