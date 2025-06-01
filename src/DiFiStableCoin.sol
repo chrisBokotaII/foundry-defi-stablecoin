@@ -9,13 +9,13 @@ import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
  * @title DiFiStableCoin
  * @author  Christian Inyekaka
  * @notice A stablecoin contract for decentralized finance applications
- * Minting:Algorithmic stablecoin
+ * Minting: Algorithmic stablecoin
  * Collateralization: Overcollateralized
  * Stability Mechanism: Pegged to a USD
  * Governance: by DSCEngine
  */
 contract DiFiStableCoin is ERC20Burnable, Ownable {
-    //errors
+    // Errors
     error DiFiStableCoin__InsufficientBalance(uint256 balance, uint256 amount);
     error DiFiStableCoin__MustBeMoreThanZero();
     error DiFiStableCoin__NotZeroAddress();
