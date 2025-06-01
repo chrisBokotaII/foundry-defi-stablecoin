@@ -212,7 +212,7 @@ contract DSCEngine is ReentrancyGuard {
 
    
 
-    function getHealthFactor() external view {}
+   
 
     ///////////////////////////////////////////
     //   Private & Internal View Functions   //
@@ -341,5 +341,9 @@ emit CollateralRedeemed(from, to, tokenCollateralAddress, amountCollateral);
     }
     function getCollateralBalanceOfUser(address user,address token) external view returns(uint256){
         return s_collateralDeposited[user][token];
+    }
+     function getHealthFactor(address user) external view returns(uint256){
+        return _healthFactor(user);
+        
     }
 }
